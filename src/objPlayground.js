@@ -33,8 +33,49 @@
   arrayGenerator('entries', { sum: 3, mult: 2, div: 1, sub: 0 }) // [ [ 'sum', 3 ], [ 'mult', 2 ], [ 'div', 1 ], [ 'sub', 0 ] ]
 */
 
-const calculator = (number1, number2) => {};
+const calculator = (number1, number2) => ({
+  sum: number1 + number2,
+  mult: number1 * number2,
+  // Ref da divisão arredondada para baixo: Tópico "Para saber mais" da página https://www.alura.com.br/artigos/formatando-numeros-no-javascript
+  div: Math.floor(number1 / number2),
+  sub: number1 - number2,
+});
 
-const arrayGenerator = (type, object) => {};
+const selectArrays = (type, object) => {
+  let selected;
+
+  if (type === 'keys') {
+    // ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+    selected = Object.keys(object);
+  } else {
+    // ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/values
+    selected = Object.values(object);
+  }
+
+  return selected;
+};
+
+const makeArrays = (object) => {
+  const objectKeys = Object.keys(object);
+  const objectValues = Object.values(object);
+  let finalObject = [];
+
+  for (let i = 0; i < objectKeys.length; i += 1) {
+    finalObject.push([objectKeys[i], objectValues[i]]);
+  }
+
+  return finalObject;
+};
+
+const arrayGenerator = (type, object) => {
+  let result;
+  if (type === 'entries') {
+    result = makeArrays(object);
+  } else {
+    result = selectArrays(type, object);
+  }
+
+  return result;
+};
 
 module.exports = { calculator, arrayGenerator };
