@@ -17,11 +17,12 @@
 */
 
 const myCounter = () => {
+  // O problema era que counter estava declarada como 'var' e o segundo for estava usando o mesmo contador que o primeiro, daí eles só executavam uma vez e o loop era finalizado.
   var myArray = [];
-  for (var counter = 0; counter <= 3; counter += 1) {
+  for (let counter = 0; counter <= 3; counter += 1) {
     myArray.push(counter);
-    for (var counter = 2; counter <= 3; counter += 1) {
-      myArray.push(counter);
+    for (let counter2 = 2; counter2 <= 3; counter2 += 1) {
+      myArray.push(counter2);
     }
   }
   return myArray;
