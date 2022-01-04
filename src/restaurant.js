@@ -86,9 +86,20 @@ const pedido = (string) => {
 };
 
 const createMenu = (object) => ({
-  fetchMenu: () => object,
+  fetchMenu: () => object, // { food: {'coxinha': 3.9, 'sopa': 9.9, 'sashimi': 12.3}, drink: {'agua': 3.9, 'cerveja': 6.9} }
   consumption: arrayAux,
   order: pedido,
+  pay: () => {
+    let total = 0; 
+    const itensMenu = Object.values(object); // [ {'coxinha': 3.9, 'sopa': 9.9, 'sashimi': 12.3}, {'agua': 3.9, 'cerveja': 6.9}]
+    // ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
+    const newItens = Object.assign(itensMenu[0], itensMenu[1]); // {'coxinha': 3.9, 'sopa': 9.9, 'sashimi': 12.3, 'agua': 3.9, 'cerveja': 6.9}
+    for (let item of arrayAux) {
+      total += newItens[item];
+    }
+    
+    return total * 1.1;
+  },
 });
 
 module.exports = createMenu;
