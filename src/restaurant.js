@@ -94,9 +94,9 @@ const createMenu = (object) => ({
     const itensMenu = Object.values(object); // [ {'coxinha': 3.9, 'sopa': 9.9, 'sashimi': 12.3}, {'agua': 3.9, 'cerveja': 6.9}]
     // ref: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
     const newItens = Object.assign(itensMenu[0], itensMenu[1]); // {'coxinha': 3.9, 'sopa': 9.9, 'sashimi': 12.3, 'agua': 3.9, 'cerveja': 6.9}
-    for (let item of arrayAux) {
+    arrayAux.forEach((item) => {
       total += newItens[item];
-    }
+    });
     
     return total * 1.1;
   },
